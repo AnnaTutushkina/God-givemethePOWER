@@ -9,7 +9,6 @@
 vector<int> get_number(istream& is) {
 	string snum;
 	vector<int> vnum;
-	// индикатор разрядов
 	unsigned int dig = 1;
 	int n = 0;
 
@@ -18,7 +17,6 @@ vector<int> get_number(istream& is) {
 	for (auto it = snum.crbegin(); it != snum.crend(); ++it) {
 		n += (*it - '0') * dig;
 		dig *= dig_size;
-		// если разряд равен базе, то выталкиваем число в вектор
 		if (dig == base) {
 			vnum.push_back(n);
 			n = 0;
@@ -95,37 +93,3 @@ void finalize(vector<int>& res) {
 	}
 }
 
-void print_res(const vector<int>& v, ostream& os) {
-	auto it = v.crbegin();
-
-	// Passing leading zeroes
-	while (!*it) {
-		++it;
-	}
-
-	while (it != v.crend()) {
-		int z = -1;
-		int num = *it;
-
-		if (num == 0) {
-			num += 1;
-		}
-
-		if (num < add_zero) {
-			z = 1;
-
-			while ((num *= dig_size) < add_zero) {
-				++z;
-			}
-		}
-
-		if (z > 0) {
-			while (z--) {
-				os << '0';
-			}
-		}
-		os << *it++;
-	}
-
-	os << endl;
-}
