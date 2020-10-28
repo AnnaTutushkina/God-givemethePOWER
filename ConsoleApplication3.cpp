@@ -93,3 +93,4 @@ void finalize(vector<int>& res) {
 	}
 }
 
+class Ferma (int q, int g);
